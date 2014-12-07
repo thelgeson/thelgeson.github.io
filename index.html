@@ -1,11 +1,12 @@
 <html>
   <head>
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/main.css">
     <title>Sample thearon.me Application</title>
   </head>
   <body bgcolor=white>
 
-  <div ng-app="" ng-init="mySwitch=false">
+  <div ng-app="" ng-controller="siteController">
     <table border="0" cellpadding="10">
       <tr>
         <td>
@@ -19,10 +20,11 @@
 
     <p>Do you like it??</p>
     <p>
-      <input type="checkbox" ng-model="mySwitch">Yes!</input >
+      <button ng-click="toggle()">Yes!</button>
     </p>
     <p>
-       <button ng-disabled="!mySwitch">That's Why I like you :)</button>
+       <b ng-show="mySwitch">That's Why I like you :)</b>
+       <b ng-hide="mySwitch">Seriously?? Don't kid yourself...</b>
     </p>
 
     <p>
@@ -30,6 +32,17 @@
     </p>
 
   </div>
+
+  <script>
+    function siteController($scope) {
+        $scope.firstName = "",
+        $scope.lastName = ""
+        $scope.mySwitch = false;
+        $scope.toggle = function() {
+            $scope.mySwitch = !$scope.mySwitch;
+        };
+    }
+  </script> 
   
   </body>
 </html>
