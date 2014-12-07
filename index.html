@@ -20,15 +20,16 @@
 
     <p>Do you like it??</p>
     <p>
-      <button ng-click="toggle()">Yes!</button>
+      <button ng-click="toggle(true)">Yes!</button> <button ng-click="toggle(false)">Yes!</button> </br>
     </p>
     <p>
        <b ng-show="mySwitch">That's Why I like you :)</b>
        <b ng-hide="mySwitch">Seriously?? Don't kid yourself...</b>
+       <button ng-disable="!mySwitch" ng-click="showbaby(true)">Face?</button>
     </p>
 
     <p>
-    {{ mySwitch }}
+       <img ng-show="baby">That's Why I like you :)</img>
     </p>
 
   </div>
@@ -38,11 +39,56 @@
         $scope.firstName = "",
         $scope.lastName = ""
         $scope.mySwitch = false;
-        $scope.toggle = function() {
-            $scope.mySwitch = !$scope.mySwitch;
+        $scope.baby = false;
+        $scope.toggle = function(show_hide) {
+            $scope.mySwitch = show_hide;
+            if (show_hide === false){
+              showbaby(false);
+            }
+        };
+        $scope.showbaby = function(show_hide) {
+            $scope.baby = show_hide;
         };
     }
   </script> 
+
+  <!DOCTYPE html>
+<html>
+
+<head>
+<script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+</head>
+
+<body>
+
+<div ng-app="" ng-controller="personController">
+
+<button ng-click="toggle()">Hide user</button>
+
+<p ng-hide="myVar">
+First Name: <input type=text ng-model="firstName"><br>
+Last Name: <input type=text ng-model="lastName"><br><br>
+Full Name: {{firstName + " " + "Butts " + lastName}}
+<br><br><br><b style="color:#FF9933"><i><u>{{firstName + " Butts " + lastName}} is Ugly!</b></i></u>
+</p>
+
+</div>
+
+<script>
+function personController($scope) {
+    $scope.firstName = "Ugly";
+    $scope.lastName = "Person";
+    $scope.myVar = false;
+    $scope.toggle = function() {
+        $scope.myVar = !$scope.myVar;
+    };
+
+}
+</script> 
+
+</body>
+</html>
+
   
   </body>
 </html>
