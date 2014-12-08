@@ -16,7 +16,7 @@
     </table>
 
     <p>This is the home page for the thearon.me Web application. </p>
-    <p>To prove that it works, clikc stuff below:</p>
+    <p>To prove that it works, click stuff below:</p>
 
     <p>Do you like it??</p>
     <p>
@@ -29,7 +29,7 @@
     </p>
 
     <p>
-       <img ng-show="baby" href="../images/baby-making-funny-face.png"></img>
+       <img ng-show="baby" src="../images/baby-making-funny-face.png"></img>
     </p>
 
   </div>
@@ -52,43 +52,5 @@
     }
   </script> 
 
-  <!DOCTYPE html>
-<html>
-
-<head>
-<script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
-</head>
-
-<body>
-
-<div ng-app="" ng-controller="personController">
-
-<button ng-click="toggle()">Hide user</button>
-
-<p ng-hide="myVar">
-First Name: <input type=text ng-model="firstName"><br>
-Last Name: <input type=text ng-model="lastName"><br><br>
-Full Name: {{firstName + " " + "Butts " + lastName}}
-<br><br><br><b style="color:#FF9933"><i><u>{{firstName + " Butts " + lastName}} is Ugly!</b></i></u>
-</p>
-
-</div>
-
-<script>
-function personController($scope) {
-    $scope.firstName = "Ugly";
-    $scope.lastName = "Person";
-    $scope.myVar = false;
-    $scope.toggle = function() {
-        $scope.myVar = !$scope.myVar;
-    };
-
-}
-</script> 
-
-</body>
-</html>
-
-  
   </body>
 </html>
