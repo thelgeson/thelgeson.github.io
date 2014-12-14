@@ -11,12 +11,12 @@
     padding:0px;
     margin:0px;
   }
-  
+
   #content {
     margin: 0px 190px 0px 190px;
     border-left: 2px solid #564b47;
     border-right: 2px solid #564b47;
-    padding: 0px;
+    padding: 15px;
     background-color: #ffffff;
   }
 
@@ -26,7 +26,7 @@
     width: 190px;
     color: #564b47;
     margin: 0px;
-    padding: 0px;
+    padding: 15px;
   }
 
   #right {
@@ -35,6 +35,6 @@
     width: 190px;
     color: #564b47;
     margin: 0px;
-    padding: 0px;
+    padding: 15px;
   }
 </style>
