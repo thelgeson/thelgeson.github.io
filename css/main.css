@@ -1,39 +1,40 @@
 <style>
-      header { zoom: 1.2; }
-      header h1 { margin-bottom: 5px; }
-      header h1 a { color: #494949; font-weight: bold; }
-      header h3 { margin-top: 20px; margin-bottom: 5px; }
-      header p.view { margin-bottom: 5px; }
-      header p.view small { padding-top: 2px; }
-      header ul {
-        zoom: 0.7;
-        margin-top: 25px;
-      }
-      section p { margin-top: 10px; }
-      section h1 { margin-bottom: 15px; }
-      section h2 { margin-bottom: 10px; }
-      section h2 { margin-bottom: 10px; }
-      footer { bottom: 20px; }
-      footer p { margin-bottom: 5px; }
-      .half-width {
-        float: left;
-        width: 200px;
-        list-style: none;
-        padding: 5px;
-        margin: 7px;
-        margin-bottom: 10px;
-      }
-      .half-width h4 {
-        margin-bottom: 5px;
-      }
-      .half-width ul {
-        padding-left: 0;
-      }
-      .half-width ul li {
-        list-style: inside;
-        font-size: 15px;
-      }
-      .clear-fix {
-        clear: both;
-      }
+  html {
+    padding:0px;
+    margin:0px;
+  }
+  body {
+    background-color: #e1ddd9;
+    font-size: 12px;
+    font-family: Verdana, Arial, SunSans-Regular, Sans-Serif;
+    color:#564b47;
+    padding:0px;
+    margin:0px;
+  }
+  
+  #content {
+    margin: 0px 190px 0px 190px;
+    border-left: 2px solid #564b47;
+    border-right: 2px solid #564b47;
+    padding: 0px;
+    background-color: #ffffff;
+  }
+
+  #left {
+    position: absolute;
+    left: 0px;
+    width: 190px;
+    color: #564b47;
+    margin: 0px;
+    padding: 0px;
+  }
+
+  #right {
+    position: absolute;
+    right: 0px;
+    width: 190px;
+    color: #564b47;
+    margin: 0px;
+    padding: 0px;
+  }
 </style>
