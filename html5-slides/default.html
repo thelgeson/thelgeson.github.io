@@ -1,4 +1,4 @@
-
+  
 <!DOCTYPE html>
 <html manifest="cache.appcache">
   <head>
@@ -9,11 +9,11 @@
 
     <link href="http://fonts.googleapis.com/css?family=Droid+Sans|Droid+Sans+Mono" rel="stylesheet" type="text/css" />
     <link id="prettify-link" href="src/prettify/prettify.css" rel="stylesheet" disabled />
-    <link href="../css/html5-slides/moon.css" class="theme" rel="stylesheet" />
-    <link href="../css/html5-slides/sand.css" class="theme" rel="stylesheet" />
-    <link href="../css/html5-slides/sea_wave.css" class="theme" rel="stylesheet" />
-    <link href="../css/html5-slides/default.css" class="theme" rel="stylesheet" media="screen"  />
-    <link href="../css/html5-slides/common.css" rel="stylesheet" media="screen" />
+    <link href="css/moon.css" class="theme" rel="stylesheet" />
+    <link href="css/sand.css" class="theme" rel="stylesheet" />
+    <link href="css/sea_wave.css" class="theme" rel="stylesheet" />
+    <link href="css/default.css" class="theme" rel="stylesheet" media="screen"  />
+    <link href="css/common.css" rel="stylesheet" media="screen" />
   </head>
   <body>
     <nav id="helpers">
@@ -397,120 +397,120 @@ idbRequest.onsuccess = function(event) {
 };
 </pre>
             <script>
-			      var idDB = {};
-			      window.indexedDB = window.indexedDB || window.webkitIndexedDB || window.mozIndexedDB;
-			      if ('webkitIndexedDB' in window) {
-			        window.IDBTransaction = window.webkitIDBTransaction;
-			        window.IDBKeyRange = window.webkitIDBKeyRange;
-			      }
-			      idDB.indexedDB = {};
-			      idDB.indexedDB.db = null;
-			      idDB.indexedDB.onerror = function(e) {
-			        console.log(e);
-			      };
-			      idDB.indexedDB.open = function() {
-			        var request = indexedDB.open("todos");
-			        request.onsuccess = function(e) {
-			          var v = 1;
-			          idDB.indexedDB.db = e.target.result;
-			          var db = idDB.indexedDB.db;
-			          // We can only create Object stores in a setVersion transaction;
-			          if (v != db.version) {
-			            var setVrequest = db.setVersion(v);
-			            // onsuccess is the only place we can create Object Stores
-			            setVrequest.onerror = idDB.indexedDB.onerror;
-			            setVrequest.onsuccess = function(e) {
-			              if(db.objectStoreNames.contains("todo")) {
-			                db.deleteObjectStore("todo");
-			              }
-			              var store = db.createObjectStore("todo",
-			                {keyPath: "timeStamp"});
-			              e.target.transaction.oncomplete = function() {
-			                idDB.indexedDB.getAllTodoItems();
-			              };
-			            };
-			          } else {
-			            request.transaction.oncomplete = function() {
-			              idDB.indexedDB.getAllTodoItems();
-			            };
-			          }
-			        };
-			        request.onerror = idDB.indexedDB.onerror;
-			      };
-			      idDB.indexedDB.addTodo = function(todoText) {
-			        var db = idDB.indexedDB.db;
-			        var trans = db.transaction(["todo"], "readwrite");
-			        var store = trans.objectStore("todo");
-			        var data = {
-			          "text": todoText,
-			          "timeStamp": new Date().getTime()
-			        };
-			        var request = store.put(data);
-			        request.onsuccess = function(e) {
-			          idDB.indexedDB.getAllTodoItems();
-			        };
-			        request.onerror = function(e) {
-			          console.log("Error Adding: ", e);
-			        };
-			      };
-			      idDB.indexedDB.deleteTodo = function(id) {
-			        var db = idDB.indexedDB.db;
-			        var trans = db.transaction(["todo"], "readwrite");
-			        var store = trans.objectStore("todo");
-			        var request = store.delete(id);
-			        request.onsuccess = function(e) {
-			          idDB.indexedDB.getAllTodoItems();
-			        };
-			        request.onerror = function(e) {
-			          console.log("Error Adding: ", e);
-			        };
-			      };
-			      idDB.indexedDB.getAllTodoItems = function() {
-			        var todos = document.getElementById("todoItems");
-			        todos.innerHTML = "";
-			        var db = idDB.indexedDB.db;
-			        var trans = db.transaction(["todo"], "readwrite");
-			        var store = trans.objectStore("todo");
-			        // Get everything in the store;
-			        var cursorRequest = store.openCursor();
-			        cursorRequest.onsuccess = function(e) {
-			          var result = e.target.result;
-			          if(!!result == false)
-			            return;
-			          renderTodo(result.value);
-			          result.continue();
-			        };
-			        cursorRequest.onerror = idDB.indexedDB.onerror;
-			      };
-			      function renderTodo(row) {
-			        var todos = document.getElementById("todoItems");
-			        var li = document.createElement("li");
-			        var a = document.createElement("a");
-			        var t = document.createTextNode(row.text);
-			        a.addEventListener("click", function() {
-			          idDB.indexedDB.deleteTodo(row.timeStamp);
-			        }, false);
-			        a.textContent = " [Delete]";
-			        li.appendChild(t);
-			        li.appendChild(a);
-			        todos.appendChild(li);
-			      }
-			      function addTodo() {
-			        var todo = document.getElementById("todo");
-			        idDB.indexedDB.addTodo(todo.value);
-			        todo.value = "";
-			      }
-			      function init() {
-			        idDB.indexedDB.open();
-			      }
-			      window.addEventListener("DOMContentLoaded", init, false);
-			    </script>
+            var idDB = {};
+            window.indexedDB = window.indexedDB || window.webkitIndexedDB || window.mozIndexedDB;
+            if ('webkitIndexedDB' in window) {
+              window.IDBTransaction = window.webkitIDBTransaction;
+              window.IDBKeyRange = window.webkitIDBKeyRange;
+            }
+            idDB.indexedDB = {};
+            idDB.indexedDB.db = null;
+            idDB.indexedDB.onerror = function(e) {
+              console.log(e);
+            };
+            idDB.indexedDB.open = function() {
+              var request = indexedDB.open("todos");
+              request.onsuccess = function(e) {
+                var v = 1;
+                idDB.indexedDB.db = e.target.result;
+                var db = idDB.indexedDB.db;
+                // We can only create Object stores in a setVersion transaction;
+                if (v != db.version) {
+                  var setVrequest = db.setVersion(v);
+                  // onsuccess is the only place we can create Object Stores
+                  setVrequest.onerror = idDB.indexedDB.onerror;
+                  setVrequest.onsuccess = function(e) {
+                    if(db.objectStoreNames.contains("todo")) {
+                      db.deleteObjectStore("todo");
+                    }
+                    var store = db.createObjectStore("todo",
+                      {keyPath: "timeStamp"});
+                    e.target.transaction.oncomplete = function() {
+                      idDB.indexedDB.getAllTodoItems();
+                    };
+                  };
+                } else {
+                  request.transaction.oncomplete = function() {
+                    idDB.indexedDB.getAllTodoItems();
+                  };
+                }
+              };
+              request.onerror = idDB.indexedDB.onerror;
+            };
+            idDB.indexedDB.addTodo = function(todoText) {
+              var db = idDB.indexedDB.db;
+              var trans = db.transaction(["todo"], "readwrite");
+              var store = trans.objectStore("todo");
+              var data = {
+                "text": todoText,
+                "timeStamp": new Date().getTime()
+              };
+              var request = store.put(data);
+              request.onsuccess = function(e) {
+                idDB.indexedDB.getAllTodoItems();
+              };
+              request.onerror = function(e) {
+                console.log("Error Adding: ", e);
+              };
+            };
+            idDB.indexedDB.deleteTodo = function(id) {
+              var db = idDB.indexedDB.db;
+              var trans = db.transaction(["todo"], "readwrite");
+              var store = trans.objectStore("todo");
+              var request = store.delete(id);
+              request.onsuccess = function(e) {
+                idDB.indexedDB.getAllTodoItems();
+              };
+              request.onerror = function(e) {
+                console.log("Error Adding: ", e);
+              };
+            };
+            idDB.indexedDB.getAllTodoItems = function() {
+              var todos = document.getElementById("todoItems");
+              todos.innerHTML = "";
+              var db = idDB.indexedDB.db;
+              var trans = db.transaction(["todo"], "readwrite");
+              var store = trans.objectStore("todo");
+              // Get everything in the store;
+              var cursorRequest = store.openCursor();
+              cursorRequest.onsuccess = function(e) {
+                var result = e.target.result;
+                if(!!result == false)
+                  return;
+                renderTodo(result.value);
+                result.continue();
+              };
+              cursorRequest.onerror = idDB.indexedDB.onerror;
+            };
+            function renderTodo(row) {
+              var todos = document.getElementById("todoItems");
+              var li = document.createElement("li");
+              var a = document.createElement("a");
+              var t = document.createTextNode(row.text);
+              a.addEventListener("click", function() {
+                idDB.indexedDB.deleteTodo(row.timeStamp);
+              }, false);
+              a.textContent = " [Delete]";
+              li.appendChild(t);
+              li.appendChild(a);
+              todos.appendChild(li);
+            }
+            function addTodo() {
+              var todo = document.getElementById("todo");
+              idDB.indexedDB.addTodo(todo.value);
+              todo.value = "";
+            }
+            function init() {
+              idDB.indexedDB.open();
+            }
+            window.addEventListener("DOMContentLoaded", init, false);
+          </script>
 
-			<div class="center" id="indexeddb-example">
-				<ul id="todoItems"></ul>
-				<input type="text" id="todo" name="todo" placeholder="What do you need to do?" style="width: 200px;" />
-				<input type="submit" value="Add Todo Item" onclick="addTodo(); return false;"/>
-			</div>
+      <div class="center" id="indexeddb-example">
+        <ul id="todoItems"></ul>
+        <input type="text" id="todo" name="todo" placeholder="What do you need to do?" style="width: 200px;" />
+        <input type="submit" value="Add Todo Item" onclick="addTodo(); return false;"/>
+      </div>
         </section>
       </div>
 
@@ -3254,5 +3254,3 @@ window.addEventListener('<em>popstate</em>', function(event) {
     </script>
   </body>
 </html>
-Status API Training Shop Blog About
-© 2015 GitHub, Inc. Terms Privacy Security Contact
