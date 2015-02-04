@@ -1,4 +1,4 @@
-app.controller("myCtrl", 
+app.controller("siteController", 
 	function siteController($scope) {
 	    $scope.firstName = "",
 	    $scope.lastName = ""
